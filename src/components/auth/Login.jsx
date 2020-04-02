@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Firebase from '../../config/firebase'
 
 
 const Login = () => {
@@ -12,7 +13,12 @@ const Login = () => {
     const handleChangePassword = e =>{
         setPassword(e.target.value);
     }
-
+    const handleClick = () => {
+        Firebase.login(email, password)
+        
+        // .then(props.history.push('./dashboard')
+        .catch(err => alert(err));
+    }
     return (
         <div>
             <h3>Login</h3>
@@ -31,7 +37,7 @@ const Login = () => {
                 onChange= {handleChangePassword}
                 name="password"/>
 
-            <button>Login</button>
+            <button onClick={handleClick}>Login</button>
 
 
         </div>

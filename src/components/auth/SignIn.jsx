@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Firebase from '../../config/firebase'
 
 const SignIn = () => {
     const [name, setName] = useState('');
@@ -16,32 +16,42 @@ const SignIn = () => {
         setPassword(e.target.value);
     }
 
+    async function onRegister() {
+        try{
+            Firebase.signIn(email, password, name);
+            // props.history.push('./dashbord');
+        }
+        catch(error){
+            alert(error.message)
+        } 
+    }
+    const handleClick = ()=>{
+        onRegister()
+    }
     return (
         <div>
+            
             <h3>Register</h3>
 
             <h5>Name</h5>
             <input
                 type="text"
-                value={name}
-                onChange={handleChangeName}
+                onChange={(handleChangeName)}
                 name="email" />
 
             <h5>Email</h5>
             <input
-                type="text"
-                value={email}
+                type="email"
                 onChange={handleChangeEmail}
                 name="email" />
 
             <h5>Password</h5>
             <input
                 type="password"
-                value={password}
                 onChange={handleChangePassword}
                 name="password" />
 
-            <button>Login</button>
+            <button onClick={handleClick}>Register</button>
 
 
         </div>
