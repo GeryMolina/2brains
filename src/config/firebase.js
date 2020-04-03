@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import App from 'firebase/app';
 import 'firebase/auth';
 
 const config = {
@@ -13,8 +13,8 @@ const config = {
 
 class Firebase {
   constructor() {
-    firebase.initializeApp(config);
-    this.auth = firebase.auth();
+    App.initializeApp(config);
+    this.auth = App.auth();
   
   }
 
@@ -31,17 +31,14 @@ class Firebase {
 
   // log in 
 
-  async login(email, password) {
-    return await firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
-      console.log(err);
-    })
+  login(email, password) {
+    return this.auth.signInWithEmailAndPassword(email, password);
   }
+  
   // logout 
 
   logout() {
-    return this.auth.signOut().catch(err => {
-      console.log(err);
-    })
+    return this.auth.signOut();
   }
 
   getUser() {

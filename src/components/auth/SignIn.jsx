@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Firebase from '../../config/firebase'
 
-const SignIn = () => {
+
+const SignIn = props => {
+    console.log(props);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +21,7 @@ const SignIn = () => {
     async function onRegister() {
         try{
             Firebase.signIn(email, password, name);
-            // props.history.push('./dashbord');
+            props.history.push('/dashbord');
         }
         catch(error){
             alert(error.message)

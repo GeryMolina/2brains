@@ -1,13 +1,18 @@
 import React from 'react';
-import Home from './views/Home'
-
+import Home from './views/Home';
+import Dashboard from './views/Dashboard';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { AuthProvider } from './context/auth'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <AuthProvider>
+      <Router>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/dashboard" component={Dashboard} />
+      </Router>
+    </AuthProvider>
   );
 }
 

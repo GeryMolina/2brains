@@ -3,7 +3,7 @@ import Login from '../components/auth/Login';
 import SignIn from '../components/auth/SignIn';
 
 const Home = () => {
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
     const [register, setRegister] = useState(false);
     const handleClickLogin = () => {
         setLogin(true)
@@ -14,13 +14,13 @@ const Home = () => {
         setRegister(true)
         setLogin(false)
     }
-   
+
     return (
         <div>
             <button onClick={handleClickLogin}>Login</button>
             <button onClick={handleClickSignIn}>Register</button>
             {login ? <Login/> : null}
-            {register ? <SignIn/> : null}
+            {register ? <SignIn /> : null}
         </div>
     )
 }
