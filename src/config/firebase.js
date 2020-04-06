@@ -15,7 +15,6 @@ class Firebase {
   constructor() {
     App.initializeApp(config);
     this.auth = App.auth();
-  
   }
 
   // sign in 
@@ -34,7 +33,7 @@ class Firebase {
   login(email, password) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
-  
+
   // logout 
 
   logout() {

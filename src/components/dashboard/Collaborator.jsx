@@ -40,7 +40,7 @@ const Collabs = () => {
                         <img className='photo' src={item.picture.large} alt='' />
                         <h5>{item.name.first} {item.name.last}</h5>
                         <section>
-                            <p><img className='icons' src={Age} alt='' /> {item.dob.age}</p>
+                            <p><img className='icons' src={Age} alt='' /> {item.dob.age} years</p>
                             <p><img className='icons' src={Phone} alt='' /> {item.cell}</p>
                             <p><img className='icons' src={Email} alt='' /> {item.email}</p>
                             <p><img className='icons' src={Adress} alt='' /> {item.location.street.number} {item.location.street.name}</p>

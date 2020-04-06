@@ -11,7 +11,7 @@ const Header = () => {
     
     const handleClick = ()=>{
         Firebase.logout();
-        setRedirect(true)
+        
     }
     const redirectTo = redirect;
     
@@ -20,13 +20,16 @@ const Header = () => {
     }
 
     if (currentUser != null) {
+       
     return <div className='header'>
         <h1>Hello {currentUser.displayName}!</h1>
         <button onClick={handleClick}><img src={Logout} alt=''/></button>
         </div>
+        
     }
     else {
-        return <h1>You need login</h1>
+        setRedirect(true)
+
     }
     
 }
