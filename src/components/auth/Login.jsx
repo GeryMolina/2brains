@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Firebase from '../../config/firebase';
+import { Context } from '../../context/auth';
 import { Redirect } from 'react-router-dom';
 import '../style.css'
 
@@ -9,6 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const {currentUser}= useContext(Context)
 
     const handleChangeEmail = e => {
         setEmail(e.target.value);
@@ -18,13 +20,15 @@ const Login = () => {
     }
     const handleClick = () => {
         Firebase.login(email, password)
-            .then(setRedirect(true))
             .catch(err => alert(err));
     }
     const redirectTo = redirect;
     
     if(redirectTo){
         return <Redirect to="/dashboard" />
+    }
+    if(currentUser){
+        setRedirect(true)
     }
     return (
         <div className='login'>
@@ -35,8 +39,7 @@ const Login = () => {
                 type="text"
                 value={email}
                 onChange={handleChangeEmail}
-                name="email" 
-                prefix='https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png' />
+                name="email"/>
 
             <h5>Password</h5>
             <input

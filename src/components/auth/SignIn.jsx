@@ -4,12 +4,13 @@ import { Redirect } from 'react-router-dom';
 import '../style.css'
 
 
-const SignIn = props => {
-    console.log(props);
+const SignIn = () => {
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+
 
     const handleChangeName = e => {
         setName(e.target.value);
@@ -23,8 +24,9 @@ const SignIn = props => {
 
     async function onRegister() {
         try{
-            Firebase.signIn(email, password, name);
-            setRedirect(true);
+            Firebase.signIn(email, password, name)  
+            .then(setRedirect(true))
+            
         }
         catch(error){
             alert(error.message)
@@ -38,6 +40,7 @@ const SignIn = props => {
     if(redirectTo){
         return <Redirect to="/dashboard" />
     }
+
 
     return (
         <div className= 'register'>
