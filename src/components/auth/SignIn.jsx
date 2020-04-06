@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Firebase from '../../config/firebase'
+import { Redirect } from 'react-router-dom';
+import '../style.css'
 
 
 const SignIn = props => {
@@ -7,6 +9,7 @@ const SignIn = props => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
     const handleChangeName = e => {
         setName(e.target.value);
@@ -21,7 +24,7 @@ const SignIn = props => {
     async function onRegister() {
         try{
             Firebase.signIn(email, password, name);
-            props.history.push('/dashbord');
+            setRedirect(true);
         }
         catch(error){
             alert(error.message)
@@ -30,8 +33,14 @@ const SignIn = props => {
     const handleClick = ()=>{
         onRegister()
     }
+    const redirectTo = redirect;
+    
+    if(redirectTo){
+        return <Redirect to="/dashboard" />
+    }
+
     return (
-        <div>
+        <div className= 'register'>
             
             <h3>Register</h3>
 

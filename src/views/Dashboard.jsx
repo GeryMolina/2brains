@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from '../components/dashboard/Header';
+import Collabs from '../components/dashboard/Collaborator';
 
 
-const Dashboard = () =>{
+const Dashboard = props =>{
     return(
         <div>
             <Header/>
-            <h1>jojojo</h1>
+            <Collabs />
         </div>
         
     )
