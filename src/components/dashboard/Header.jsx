@@ -1,15 +1,33 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../context/auth';
+import React, { useContext, useState } from 'react';
+import { Context } from '../../context/auth';
+import Firebase from '../../config/firebase';
+import Logout from '../../assets/logout.png';
+import '../style.css'
+import { Redirect } from 'react-router-dom';
 
-const Header = (props) => {
-    const {currentUser} = useContext(AuthContext);
+const Header = () => {
+    const {currentUser} = useContext(Context);
+    const [redirect, setRedirect] = useState(false);
+    
+    const handleClick = ()=>{
+        Firebase.logout();
+        setRedirect(true)
+    }
+    const redirectTo = redirect;
+    
+    if(redirectTo){
+        return <Redirect to="/" />
+    }
 
     if (currentUser != null) {
-    return <div><h1>hello!{currentUser.displayName}</h1></div>
+    return <div className='header'>
+        <h1>Hello {currentUser.displayName}!</h1>
+        <button onClick={handleClick}><img src={Logout} alt=''/></button>
+        </div>
     }
     else {
         return <h1>You need login</h1>
     }
     
 }
-export default Header 
+export default Header;
